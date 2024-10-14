@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 
 
 export default function Front() {
-  const [value, setValue] = useState(-1);
+  const [value, setValue] = useState("");
 
   const [retrieved, setRetrieved] = useState("Not retrieved yet!");
 

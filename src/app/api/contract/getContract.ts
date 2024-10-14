@@ -3,7 +3,7 @@ import { ethers, verifyMessage, Wallet } from "ethers";
 import contractABI from "./contractABI.json" assert { type: "json" };
 const contractAddress = "0xb41175aa3ff245c29BE0EC53AB37c8c319259daA";
 
-let contract = null;
+let contract: ethers.Contract | null = null;
 
 export default async function GetContract() {
     if (contract == null) {
