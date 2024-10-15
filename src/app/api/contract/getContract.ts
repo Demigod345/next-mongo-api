@@ -8,14 +8,16 @@ let Contract: ethers.Contract | null = null;
 if (!process.env.PRIVATE_KEY) {
     throw new Error('Invalid/Missing environment variable: "PRIVATE_KEY"')
 }
-if (Contract == null) {
-    const url = OasisSapphireTestnet.rpcUrls.public.http[0];
-    const privateKey = '0x' + process.env.PRIVATE_KEY;
-    const signer = await new ethers.Wallet(privateKey);
-    const provider = await new ethers.JsonRpcProvider(url);
-    const wallet = signer.connect(provider);
-    console.log(signer.address);
-    Contract = new ethers.Contract(contractAddress, contractABI, wallet);
-}
 
-export default Contract
+export default async function GetContract(){
+    if (Contract == null) {
+        const url = OasisSapphireTestnet.rpcUrls.public.http[0];
+        const privateKey = '0x' + process.env.PRIVATE_KEY;
+        const signer = await new ethers.Wallet(privateKey);
+        const provider = await new ethers.JsonRpcProvider(url);
+        const wallet = signer.connect(provider);
+        console.log(signer.address);
+        Contract = new ethers.Contract(contractAddress, contractABI, wallet);
+    }
+    return Contract;
+}
